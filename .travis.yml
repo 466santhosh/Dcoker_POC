@@ -1,23 +1,23 @@
-# sudo: required
-# services:
-#   - docker
+sudo: required
+services:
+  - docker
 
-# before_install:
-#   - docker build -t santhosh/docker-react -f Dockerfile.dev .
+before_install:
+  - docker build -t santhosh/docker-react -f Dockerfile.dev .
 
-# script:
-#   - docker run santhosh/docker-react npm run test -- --coverage
+script:
+  - docker run santhosh/docker-react npm run test -- --coverage
 
-# deploy:
-#   provider: elasticbeanstalk
-#   region: "us-west-2"
-#   app: "docker"
-#   env: "Docker-env"
-#   bucket_name: "elasticbeanstalk-us-west-2-306476627547"
-#   bucket_path: "docker"
-#   on:
-#     branch: master
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key:
-#     secure: "$AWS_SECRET_KEY"
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "simpleawswebapp"
+  env: "simpleawswebapp-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-188728493400"
+  bucket_path: "simpleawswebapp"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
 
